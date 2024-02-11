@@ -1,0 +1,649 @@
+patterns
+
+1.left rectangle
+
+#include <stdio.h>
+int main() {
+    int rows, cols;
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+    for (int i = 1; i <= rows; i++) {
+        for (int j = 1; j <= cols; j++) {
+            printf("* ");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+2.square
+
+#include <stdio.h>
+
+int main() {
+    int side;
+    printf("Enter the side length of the square: ");
+    scanf("%d", &side);
+    for (int i = 1; i <= side; i++) {
+        for (int j = 1; j <= side; j++) {
+            printf("* ");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+ 
+3.hallow square
+
+#include <stdio.h>
+
+int main() {
+    int side;
+    printf("Enter the side length of the hollow square: ");
+    scanf("%d", &side);
+    for (int i = 1; i <= side; i++) {
+        for (int j = 1; j <= side; j++) {
+            if (i == 1 || i == side || j == 1 || j == side) {
+                printf("* ");
+            } else {
+                printf("  ");
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+4.hoh diamond
+
+#include <stdio.h>
+
+void printDiamond(int rows) {
+    for (int i = 1; i <= rows; i++) {
+        
+        for (int space = 1; space <= rows - i; space++) {
+            printf(" ");
+        }
+        
+        for (int j = 1; j <= 2 * i - 1; j++) {
+            printf("%c", 'H');
+        }
+        printf("\n");
+    }
+}
+
+void printHOHDiamond(int rows) {
+    for (int i = 1; i <= rows; i++) {
+        
+        for (int space = 1; space <= rows - i; space++) {
+            printf(" ");
+        }
+        
+        for (int j = 1; j <= 2 * i - 1; j++) {
+            if (j == i || j == 2 * i - 1) {
+                printf("O");
+            } else {
+                printf("H");
+            }
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int rows;
+
+    printf("Enter the number of rows for the diamond: ");
+    scanf("%d", &rows);
+
+    printf("HOH Diamond:\n");
+    printHOHDiamond(rows);
+
+    return 0;
+}
+
+5.diamond
+
+#include <stdio.h>
+
+void printDiamond(int rows) {
+    int i, j, space;
+
+    
+    for (i = 1; i <= rows; i++) {
+        
+        for (space = 1; space <= rows - i; space++) {
+            printf(" ");
+        }
+        
+        for (j = 1; j <= 2 * i - 1; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    
+    for (i = rows - 1; i >= 1; i--) {
+        
+        for (space = 1; space <= rows - i; space++) {
+            printf(" ");
+        }
+        
+        for (j = 1; j <= 2 * i - 1; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int rows;
+
+    
+    printf("Enter the number of rows for the diamond: ");
+    scanf("%d", &rows);
+
+    printf("Diamond Pattern:\n");
+    printDiamond(rows);
+
+    return 0;
+}
+
+6.pyramid up and down
+
+#include <stdio.h>
+
+void printUpwardPyramid(int rows) {
+    for (int i = 1; i <= rows; i++) {
+        // Print spaces before the asterisks
+        for (int space = 1; space <= rows - i; space++) {
+            printf(" ");
+        }
+        
+        for (int j = 1; j <= 2 * i - 1; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+
+void printDownwardPyramid(int rows) {
+    for (int i = rows; i >= 1; i--) {
+        for (int space = 1; space <= rows - i; space++) {
+            printf(" ");
+        }
+        for (int j = 1; j <= 2 * i - 1; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int rows;
+    printf("Enter the number of rows for the pyramids: ");
+    scanf("%d", &rows);
+
+    printf("Upward Pyramid:\n");
+    printUpwardPyramid(rows);
+
+    printf("\nDownward Pyramid:\n");
+    printDownwardPyramid(rows);
+
+    return 0;
+}
+
+
+
+numbers
+
+1.armstrong number
+
+#include <stdio.h>
+#include <math.h>
+
+int isArmstrong(int number) {
+    int originalNumber = number;
+    int result = 0;
+    int n = 0;
+
+    
+    while (originalNumber != 0) {
+        originalNumber /= 10;
+        n++;
+    }
+
+    originalNumber = number; // Reset originalNumber to the actual value
+
+    
+    while (originalNumber != 0) {
+        int digit = originalNumber % 10;
+        result += pow(digit, n);
+        originalNumber /= 10;
+    }
+
+    
+    return (result == number);
+}
+
+int main() {
+    int num;
+
+    
+    printf("Enter a number to check for Armstrong: ");
+    scanf("%d", &num);
+
+    if (isArmstrong(num)) {
+        printf("%d is an Armstrong number.\n", num);
+    } else {
+        printf("%d is not an Armstrong number.\n", num);
+    }
+
+    return 0;
+}
+
+2.prime number
+
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isPrime(int num) {
+    if (num <= 1) {
+        return false; 
+    }
+
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            return false; 
+        }
+    }
+
+    return true; 
+}
+
+int main() {
+    int num;
+
+    
+    printf("Enter a number to check for prime: ");
+    scanf("%d", &num);
+
+    if (isPrime(num)) {
+        printf("%d is a prime number.\n", num);
+    } else {
+        printf("%d is not a prime number.\n", num);
+    }
+
+    return 0;
+}
+
+3.factorial
+
+#include <stdio.h>
+
+unsigned long long factorial(int num) {
+    if (num == 0 || num == 1) {
+        return 1; 
+    } else {
+        return num * factorial(num - 1); 
+    }
+}
+
+int main() {
+    int num;
+
+    
+    printf("Enter a number to calculate factorial: ");
+    scanf("%d", &num);
+
+    if (num < 0) {
+        printf("Factorial is not defined for negative numbers.\n");
+    } else {
+        printf("Factorial of %d is %llu\n", num, factorial(num));
+    }
+
+    return 0;
+}
+
+4.sum of odd and even numbers
+
+#include <stdio.h>
+
+int main() {
+    int start, end;
+    int sumOdd = 0, sumEven = 0;
+
+    
+    printf("Enter the starting number: ");
+    scanf("%d", &start);
+
+    printf("Enter the ending number: ");
+    scanf("%d", &end);
+
+    
+    if (start > end) {
+        printf("Invalid range. Starting number should be less than or equal to the ending number.\n");
+        return 1; 
+    }
+    for (int num = start; num <= end; num++) {
+        if (num % 2 == 0) {
+            sumEven += num; 
+        } else {
+            sumOdd += num; 
+        }
+    }
+
+    
+    printf("Sum of even numbers from %d to %d: %d\n", start, end, sumEven);
+    printf("Sum of odd numbers from %d to %d: %d\n", start, end, sumOdd);
+
+    return 0;
+}
+
+
+5.perfect number
+
+#include <stdio.h>
+
+int isPerfect(int num) {
+    int sum = 1; 
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) {
+            sum += i;
+
+            if (i != num / i) {
+                sum += num / i;
+            }
+        }
+    }
+
+    return (sum == num);
+}
+
+int main() {
+    int num;
+
+    
+    printf("Enter a number to check for perfection: ");
+    scanf("%d", &num);
+
+    if (isPerfect(num)) {
+        printf("%d is a perfect number.\n", num);
+    } else {
+        printf("%d is not a perfect number.\n", num);
+    }
+
+    return 0;
+}
+
+
+6.positive and negative
+
+#include <stdio.h>
+
+int main() {
+    int num;
+
+    
+    printf("Enter a number: ");
+    scanf("%d", &num);
+
+    
+    if (num > 0) {
+        printf("%d is a positive number.\n", num);
+    } else if (num < 0) {
+        printf("%d is a negative number.\n", num);
+    } else {
+        printf("%d is zero.\n", num);
+    }
+
+    return 0;
+}
+
+7.leap year
+
+#include <stdio.h>
+
+int isLeapYear(int year) {
+    
+    return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+}
+
+int main() {
+    int year;
+
+    
+    printf("Enter a year to check for leap year: ");
+    scanf("%d", &year);
+
+    if (isLeapYear(year)) {
+        printf("%d is a leap year.\n", year);
+    } else {
+        printf("%d is not a leap year.\n", year);
+    }
+
+    return 0;
+}
+
+8.vote
+
+#include <stdio.h>
+
+int main() {
+    int age;
+
+    
+    printf("Enter your age: ");
+    scanf("%d", &age);
+
+    
+    if (age >= 18) {
+        printf("You are eligible to vote.\n");
+    } else {
+        printf("You are not eligible to vote yet.\n");
+    }
+
+    return 0;
+}
+
+9.sum of digits
+
+#include <stdio.h>
+
+int sumOfDigits(int num) {
+    int sum = 0;
+
+    while (num != 0) {
+        sum += num % 10; 
+        num /= 10;       
+    }
+
+    return sum;
+}
+
+int main() {
+    int number;
+    printf("Enter a number: ");
+    scanf("%d", &number);
+    printf("Sum of digits of %d is: %d\n", number, sumOfDigits(number));
+
+    return 0;
+}
+
+10.composite number
+
+#include <stdio.h>
+#include <stdbool.h>
+
+bool isComposite(int num) {
+    if (num <= 1) {
+        return false; 
+    }
+
+    for (int i = 2; i < num; i++) {
+        if (num % i == 0) {
+            return true; 
+        }
+    }
+
+    return false; 
+}
+
+int main() {
+    int num;
+
+    
+    printf("Enter a number to check for being composite: ");
+    scanf("%d", &num);
+
+    if (isComposite(num)) {
+        printf("%d is a composite number.\n", num);
+    } else {
+        printf("%d is not a composite number.\n", num);
+    }
+
+    return 0;
+}
+
+11.fibonnaci
+
+#include <stdio.h>
+
+void generateFibonacci(int terms) {
+    int firstTerm = 0, secondTerm = 1, nextTerm;
+
+    printf("Fibonacci Sequence:\n");
+
+    for (int i = 1; i <= terms; i++) {
+        printf("%d, ", firstTerm);
+        nextTerm = firstTerm + secondTerm;
+        firstTerm = secondTerm;
+        secondTerm = nextTerm;
+    }
+    printf("\n");
+}
+
+int main() {
+    int n;
+
+    
+    printf("Enter the number of terms in the Fibonacci sequence: ");
+    scanf("%d", &n);
+
+    
+    generateFibonacci(n);
+
+    return 0;
+}
+
+12.square and cube
+
+#include <stdio.h>
+
+void printSquareAndCube(int start, int end) {
+    printf("Number\tSquare\tCube\n");
+    
+    for (int i = start; i <= end; i++) {
+        printf("%d\t%d\t%d\n", i, i * i, i * i * i);
+    }
+}
+
+int main() {
+    int start, end;
+    printf("Enter the starting number: ");
+    scanf("%d", &start);
+
+    printf("Enter the ending number: ");
+    scanf("%d", &end);
+    if (start > end) {
+        printf("Invalid range. Starting number should be less than or equal to the ending number.\n");
+        return 1; 
+    }
+    printSquareAndCube(start, end);
+
+    return 0;
+}
+
+13.lcm and gcd
+
+#include <stdio.h>
+int calculateGCD(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+int calculateLCM(int a, int b) {
+    // LCM(a, b) = |a * b| / GCD(a, b)
+    return (a * b) / calculateGCD(a, b);
+}
+
+int main() {
+    int num1, num2;
+    printf("Enter the first number: ");
+    scanf("%d", &num1);
+    printf("Enter the second number: ");
+    scanf("%d", &num2);   
+    printf("GCD of %d and %d is: %d\n", num1, num2, calculateGCD(num1, num2));   
+    printf("LCM of %d and %d is: %d\n", num1, num2, calculateLCM(num1, num2));
+
+    return 0;
+}
+
+14.reverse number
+
+#include <stdio.h>
+
+int reverseNumber(int num) {
+    int reversed = 0;
+
+    while (num != 0) {
+        reversed = reversed * 10 + num % 10;
+        num /= 10;
+    }
+
+    return reversed;
+}
+
+int main() {
+    int originalNum, reversedNum;
+
+    printf("Enter a number: ");
+    scanf("%d", &originalNum);
+    reversedNum = reverseNumber(originalNum);
+
+    printf("Reversed number: %d\n", reversedNum);
+
+    return 0;
+}
+
+15.simple interest
+
+#include <stdio.h>
+
+float calculateSimpleInterest(float principal, float rate, int time) {
+
+int main() {
+    float principal, rate;
+    int time;
+    printf("Enter the principal amount: ");
+    scanf("%f", &principal);
+
+    printf("Enter the rate of interest: ");
+    scanf("%f", &rate);
+
+    printf("Enter the time (in years): ");
+    scanf("%d", &time);
+    float simpleInterest = calculateSimpleInterest(principal, rate, time);
+    printf("Simple Interest: %.2f\n", simpleInterest);
+
+    return 0;
+}
